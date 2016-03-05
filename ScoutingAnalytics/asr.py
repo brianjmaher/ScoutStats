@@ -26,13 +26,17 @@ def add_asr_to_sheet(event_key, sheet):
 	for i in range(1, len(sheet)):
 		red_total_opr = 0
 		blue_total_opr = 0
+		row_ext = None
 		for j in range(1, 4):
 			red_total_opr += oprs[teams.index(sheet[i][j])]
 		for j in range(4, 7):
 			blue_total_opr += oprs[teams.index(sheet[i][j])]
-		red_asr = sheet[i][7] - red_total_opr
-		blue_asr = sheet[i][8] - blue_total_opr 
-		row_ext = [red_total_opr, blue_total_opr, red_asr, blue_asr]
+		if sheet[i][7] > -1:
+			red_asr = sheet[i][7] - red_total_opr
+			blue_asr = sheet[i][8] - blue_total_opr
+			row_ext = [red_total_opr, blue_total_opr, red_asr, blue_asr]
+		else:
+			row_ext = [red_total_opr, blue_total_opr]
 		sheet[i].extend([round(x,2) for x in row_ext])
 
 def writeCSV(sheet, event_key):

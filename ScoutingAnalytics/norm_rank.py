@@ -20,5 +20,5 @@ def writeCSV(sheet, event_key):
 
 def write_normalized_CSV(event_key):
 	sheet = bscout.get_event_rankings(event_key)
-	normalize_sheet(sheet)
+	sheet = normalize_sheet(sheet)
 	writeCSV(sheet, event_key)
