@@ -1,7 +1,5 @@
 import requests
-
 import datetime
-
 
 header = {'X-TBA-App-Id' : 'BrianMaher:BrianScoutLib:0'}
 
@@ -35,9 +33,7 @@ def get_event_teams(event_key):
 
 #RETURNS TEAMS AT AN EVENT IN LIST FORM
 def get_event_teams_list(event_key):
-	teams_url = get_event_url(event_key) + '/teams'
-	teams_request = requests.get(teams_url, params = header)
-	return sorted([team["team_number"] for team in teams_request.json()])
+	return sorted([int(team[1]) for team in get_event_rankings(event_key)[1:]])
 
 #RETURNS MATCH RESULTS
 def get_event_matches(event_key):

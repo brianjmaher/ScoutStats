@@ -78,7 +78,7 @@ def get_tOPRs(event_key, columns):
 def write_sheet_to_CSV(event_key, sheet):
 	while True:
 		try:
-			with open("tasks_%s.csv" % event_key, 'wb') as csvfile:
+			with open("%s_tasks.csv" % event_key, 'wb') as csvfile:
 				writer = csv.writer(csvfile, dialect='excel')
 				for row in sheet:
 					writer.writerow(row)

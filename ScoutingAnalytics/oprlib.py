@@ -179,8 +179,6 @@ def compute_MPR(event_key):
 	Xmpr = numpy.linalg.solve(Amarg, Bmarg)
 	return Xmpr
 
-
-
 def initialize_pairings(pairings_dict, teams_matrix):
 	for team1 in teams_matrix:
 		pairings_dict[team1[0]] = {}
@@ -215,7 +213,7 @@ def writeCSV(teams_matrix, data_matrix):
 			writer.writerow(row)
 
 def write_stats_CSV(event_key):
-	with open('general_stats_%s.csv' % event_key, 'wb') as csvfile:
+	with open('%s_general_stats.csv' % event_key, 'wb') as csvfile:
 		writer = csv.writer(csvfile, dialect=csv.excel)
 		teams_matrix = get_teams_matrix(event_key)
 		Xopr = compute_OPR(event_key)
