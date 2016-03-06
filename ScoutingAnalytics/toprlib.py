@@ -76,21 +76,10 @@ def get_tOPRs(event_key, columns):
 	return tOPRs
 
 def write_sheet_to_CSV(event_key, sheet):
-	while True:
-		try:
-			with open("%s_tasks.csv" % event_key, 'wb') as csvfile:
-				writer = csv.writer(csvfile, dialect='excel')
-				for row in sheet:
-					writer.writerow(row)
-			break
-		except IOError:
-			command = raw_input("ERROR: file is open, please close it before writing. Try again? (Y or N)")
-			if command == "Y":
-				continue
-			elif command == "N":
-				break
-			else: 
-				print "Invalid command. Trying anyway."
+	with open("%s_tasks.csv" % event_key, 'wb') as csvfile:
+		writer = csv.writer(csvfile, dialect='excel')
+		for row in sheet:
+			writer.writerow(row)
 
 def write_tOPRs_CSV(event_key):
 	data = get_stats_data(event_key)
