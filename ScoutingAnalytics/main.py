@@ -3,6 +3,7 @@ import oprlib
 import toprlib
 import asr
 import simplejson
+import requests
 
 if __name__ == "__main__":
 	event_key = raw_input("Event key, e.g. 2016njfla: ")
@@ -29,6 +30,10 @@ if __name__ == "__main__":
 			print "Not enough matches played, check back later."
 			break
 		
+		except requests.exceptions.ConnectionError:
+			print "Error: check your internet connection"
+			break
+
 		except IOError:
 			command = raw_input("ERROR: file is open, please close it before writing. Try again? (Y or N)")
 			if command == "Y":
